@@ -3,7 +3,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../text/app_text.dart';
 
-/// Represents an action button displayed inside a dialog.
 class AppDialogAction {
   final String label;
   final VoidCallback onPressed;
@@ -18,7 +17,6 @@ class AppDialogAction {
   });
 }
 
-/// A centralized Dialog system styled according to Apple HIG.
 class AppDialog extends StatelessWidget {
   final String title;
   final String? message;
@@ -33,7 +31,6 @@ class AppDialog extends StatelessWidget {
     required this.actions,
   });
 
-  /// Displays an HIG-inspired Alert Dialog with single OK action.
   static Future<void> showAlert({
     required BuildContext context,
     required String title,
@@ -60,7 +57,6 @@ class AppDialog extends StatelessWidget {
     );
   }
 
-  /// Displays an HIG-inspired Confirmation Dialog with Cancel and Confirm buttons.
   static Future<void> showConfirm({
     required BuildContext context,
     required String title,

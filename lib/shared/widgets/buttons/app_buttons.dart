@@ -6,7 +6,6 @@ import '../../../core/theme/app_spacing.dart';
 import '../icons/app_icon.dart';
 import '../text/app_text.dart';
 
-/// A wrapper widget providing a premium iOS-like touch scale and opacity bounce.
 class _TouchBounceInteraction extends StatefulWidget {
   final Widget child;
   final VoidCallback? onTap;
@@ -34,7 +33,7 @@ class _TouchBounceInteractionState extends State<_TouchBounceInteraction>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 80), // Fast, snappy response
+      duration: const Duration(milliseconds: 80),
     );
     _scaleAnimation = Tween<double>(
       begin: 1.0,
@@ -52,7 +51,7 @@ class _TouchBounceInteractionState extends State<_TouchBounceInteraction>
     if (widget.enabled && widget.onTap != null) {
       setState(() => _isPressed = true);
       _controller.forward();
-      HapticFeedback.lightImpact(); // Native iOS tap vibration
+      HapticFeedback.lightImpact();
     }
   }
 
@@ -96,7 +95,6 @@ class _TouchBounceInteractionState extends State<_TouchBounceInteraction>
   }
 }
 
-// --- PRIMARY BUTTON ---
 class AppPrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -116,7 +114,7 @@ class AppPrimaryButton extends StatelessWidget {
     this.icon,
     this.fullWidth = true,
     this.width,
-    this.height = 52.0, // Apple HIG recommended height
+    this.height = 52.0,
   });
 
   @override
@@ -132,7 +130,7 @@ class AppPrimaryButton extends StatelessWidget {
         color: isButtonEnabled
             ? colors.primary
             : colors.border.withValues(alpha: 0.4),
-        borderRadius: AppRadius.borderMd, // Snug iOS curves
+        borderRadius: AppRadius.borderMd,
       ),
       padding: AppSpacing.edgeInsetsHorizontalMd,
       child: loading
@@ -164,7 +162,6 @@ class AppPrimaryButton extends StatelessWidget {
   }
 }
 
-// --- SECONDARY BUTTON ---
 class AppSecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -232,7 +229,6 @@ class AppSecondaryButton extends StatelessWidget {
   }
 }
 
-// --- OUTLINE BUTTON ---
 class AppOutlineButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -310,7 +306,6 @@ class AppOutlineButton extends StatelessWidget {
   }
 }
 
-// --- TEXT BUTTON ---
 class AppTextButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -336,7 +331,7 @@ class AppTextButton extends StatelessWidget {
     final activeColor = textColor ?? colors.primary;
 
     Widget child = Container(
-      height: 44.0, // Minimum HIG tap area
+      height: 44.0,
       padding: AppSpacing.edgeInsetsHorizontalSm,
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -371,7 +366,6 @@ class AppTextButton extends StatelessWidget {
   }
 }
 
-// --- ICON BUTTON ---
 class AppIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onPressed;

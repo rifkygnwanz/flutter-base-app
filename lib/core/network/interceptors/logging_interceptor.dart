@@ -1,7 +1,6 @@
 import 'dart:developer' as dev;
 import 'package:dio/dio.dart';
 
-/// Interceptor to format and log network calls to standard system developer console.
 class LoggingInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

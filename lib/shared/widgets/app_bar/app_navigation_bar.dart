@@ -6,10 +6,6 @@ import '../../../core/theme/app_spacing.dart';
 import '../icons/app_icon.dart';
 import '../text/app_text.dart';
 
-/// A premium iOS-inspired navigation bar.
-///
-/// Replaces standard Material [AppBar] with a custom Cupertino HIG layout
-/// that scrolls translucent frosted-glass backgrounds over content.
 class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final Widget? titleWidget;
@@ -36,7 +32,6 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final colors = AppColors.of(context);
 
-    // Back Button / Leading
     Widget? leadingWidget;
     final canPop = GoRouter.of(context).canPop();
     if (showBackButton && canPop) {
@@ -56,7 +51,6 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
       );
     }
 
-    // Title widget
     final centerTitleWidget =
         titleWidget ??
         (title != null
@@ -67,9 +61,8 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
               )
             : const SizedBox.shrink());
 
-    // Navigation Bar Content using standard flutter widgets layout
     Widget barContent = Container(
-      height: 44.0, // Standard iOS navigation height
+      height: 44.0,
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
       child: NavigationToolbar(
         leading: leadingWidget,
@@ -97,7 +90,6 @@ class AppNavigationBar extends StatelessWidget implements PreferredSizeWidget {
       );
     }
 
-    // Frosted glass blur overlay
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),

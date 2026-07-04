@@ -11,10 +11,8 @@ import '../../shared/widgets/scaffold/app_scaffold.dart';
 import '../../shared/widgets/text/app_text.dart';
 import 'route_config.dart';
 
-// Global key for root navigator
 final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
-// Provider for GoRouter
 final routerProvider = Provider<GoRouter>((ref) {
   final secureStorage = ref.watch(secureStorageServiceProvider);
 
@@ -31,10 +29,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           state.matchedLocation == RouteConfig.loginPath ||
           state.matchedLocation == RouteConfig.registerPath;
 
-      if (!isLoggedIn && !goingToLogin) {
-        // Redirection disabled by default to make starter kit immediately reviewable.
-        // return RouteConfig.loginPath;
-      }
+      if (!isLoggedIn && !goingToLogin) {}
 
       if (isLoggedIn && goingToLogin) {
         return RouteConfig.homePath;
@@ -44,7 +39,6 @@ final routerProvider = Provider<GoRouter>((ref) {
     },
 
     routes: [
-      // Auth routes
       GoRoute(
         path: RouteConfig.loginPath,
         name: RouteConfig.loginName,
@@ -58,13 +52,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             const _PreviewScreen(title: 'Register Screen'),
       ),
 
-      // Stateful nested navigation shell for tabbed interface (HIG pattern)
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return _ScaffoldWithNavBar(navigationShell: navigationShell);
         },
         branches: [
-          // Home tab branch
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -86,7 +78,6 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
 
-          // Search tab branch
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -98,7 +89,6 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
 
-          // Settings tab branch
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -119,7 +109,6 @@ final routerProvider = Provider<GoRouter>((ref) {
   );
 });
 
-/// A persistent shell wrapper with AppTabBar.
 class _ScaffoldWithNavBar extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
 
@@ -136,15 +125,11 @@ class _ScaffoldWithNavBar extends ConsumerWidget {
         currentIndex: navigationShell.currentIndex,
         onTap: (index) {
           if (index == navigationShell.currentIndex) {
-            // If already on the tab, trigger action (like scroll to top)
             if (index == 0) {
               ref.read(homeScrollTriggerProvider.notifier).trigger();
             }
           } else {
-            navigationShell.goBranch(
-              index,
-              initialLocation: true,
-            );
+            navigationShell.goBranch(index, initialLocation: true);
           }
         },
         items: const [
@@ -169,7 +154,6 @@ class _ScaffoldWithNavBar extends ConsumerWidget {
   }
 }
 
-/// A private placeholder screen used for navigation demonstration.
 class _PreviewScreen extends StatelessWidget {
   final String title;
 

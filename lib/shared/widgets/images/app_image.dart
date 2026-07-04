@@ -3,10 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/theme/app_colors.dart';
 import '../icons/app_icon.dart';
 
-/// Centralized network image rendering component.
-///
-/// Wraps CachedNetworkImage to enforce consistent loading insets,
-/// placeholder colors, error widgets, and clean ClipRRect borders.
 class AppNetworkImage extends StatelessWidget {
   final String imageUrl;
   final BoxFit fit;
@@ -37,10 +33,7 @@ class AppNetworkImage extends StatelessWidget {
       height: height,
       fit: fit,
       placeholder: (context, url) =>
-          placeholder ??
-          Container(
-            color: colors.border.withValues(alpha: 0.1),
-          ),
+          placeholder ?? Container(color: colors.border.withValues(alpha: 0.1)),
       errorWidget: (context, url, error) =>
           errorWidget ??
           Container(
@@ -55,10 +48,7 @@ class AppNetworkImage extends StatelessWidget {
     );
 
     if (borderRadius != null) {
-      image = ClipRRect(
-        borderRadius: borderRadius!,
-        child: image,
-      );
+      image = ClipRRect(borderRadius: borderRadius!, child: image);
     }
 
     return image;

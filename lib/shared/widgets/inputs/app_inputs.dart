@@ -7,7 +7,6 @@ import '../../../core/theme/app_typography.dart';
 import '../icons/app_icon.dart';
 import '../text/app_text.dart';
 
-/// A production-ready text input field styled according to Apple HIG.
 class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? labelText;
@@ -119,9 +118,7 @@ class AppTextField extends StatelessWidget {
                   horizontal: AppSpacing.md,
                   vertical: AppSpacing.mdSm,
                 ),
-                decoration: const BoxDecoration(
-                  color: Color(0x00000000), // Transparent
-                ),
+                decoration: const BoxDecoration(color: Color(0x00000000)),
               ),
             ),
             if (hasError && errorMsg != null) ...[
@@ -147,7 +144,6 @@ class AppTextField extends StatelessWidget {
   }
 }
 
-/// A specialized password input component with built-in visibility toggle.
 class AppPasswordField extends StatefulWidget {
   final TextEditingController? controller;
   final String? labelText;
@@ -209,7 +205,6 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
   }
 }
 
-/// An iOS styled search text field with circular corners and built-in search/clear icons.
 class AppSearchField extends StatelessWidget {
   final TextEditingController? controller;
   final String hintText;
@@ -245,9 +240,7 @@ class AppSearchField extends StatelessWidget {
       style: typography.body.copyWith(color: colors.textPrimary),
       placeholder: hintText,
       placeholderStyle: typography.body.copyWith(color: colors.textSecondary),
-      backgroundColor: colors.border.withValues(
-        alpha: 0.3,
-      ), // HIG iOS search bar tint
+      backgroundColor: colors.border.withValues(alpha: 0.3),
       borderRadius: AppRadius.borderCircular,
       itemColor: colors.textSecondary,
     );

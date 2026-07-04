@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-/// Representation of network and server exception states.
 class ApiException implements Exception {
   final String message;
   final int? statusCode;
@@ -14,7 +13,6 @@ class ApiException implements Exception {
     this.type = ApiExceptionType.unknown,
   });
 
-  /// Map a raw [DioException] to our clean [ApiException].
   factory ApiException.fromDioException(DioException error) {
     String message = 'An unexpected network error occurred. Please try again.';
     ApiExceptionType type = ApiExceptionType.unknown;
@@ -98,7 +96,6 @@ class ApiException implements Exception {
     );
   }
 
-  /// Parses typical API error bodies (e.g. { "message": "error desc", "error": "desc" })
   static String? _parseErrorMessage(dynamic data) {
     if (data is Map<String, dynamic>) {
       if (data.containsKey('message') && data['message'] is String) {
@@ -116,7 +113,6 @@ class ApiException implements Exception {
       'ApiException(message: $message, statusCode: $statusCode, type: $type)';
 }
 
-/// Enum categorizing the type of network error occurred.
 enum ApiExceptionType {
   timeout,
   security,

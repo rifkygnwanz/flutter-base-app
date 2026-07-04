@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import '../../../core/theme/app_typography.dart';
 
-/// Cupertino-inspired typography variant enum.
 enum AppTextVariant {
   largeTitle,
   title1,
@@ -14,7 +13,6 @@ enum AppTextVariant {
   caption,
 }
 
-/// Centralized Typography Component following Cupertino HIG.
 class AppText extends StatelessWidget {
   final String text;
   final AppTextVariant variant;
@@ -38,8 +36,6 @@ class AppText extends StatelessWidget {
     this.fontWeight,
     this.height,
   });
-
-  // Short-hand helper constructors for Cupertino hierarchy
 
   const AppText.largeTitle(
     this.text, {

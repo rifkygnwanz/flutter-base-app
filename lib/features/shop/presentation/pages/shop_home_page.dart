@@ -20,7 +20,6 @@ import '../../../../shared/widgets/states/app_states.dart';
 import '../../../../shared/widgets/text/app_text.dart';
 import '../controllers/product_controller.dart';
 
-/// Premium ticking iOS countdown timer widget for Flash Sales.
 class FlashSaleTimer extends StatefulWidget {
   const FlashSaleTimer({super.key});
 
@@ -29,7 +28,7 @@ class FlashSaleTimer extends StatefulWidget {
 }
 
 class _FlashSaleTimerState extends State<FlashSaleTimer> {
-  int _seconds = 9930; // 02:45:30 in seconds
+  int _seconds = 9930;
   Timer? _timer;
 
   @override
@@ -83,10 +82,6 @@ class _FlashSaleTimerState extends State<FlashSaleTimer> {
   }
 }
 
-/// Redesigned premium iOS HIG Shop Home Page.
-///
-/// Features a fixed top header, responsive grid for tablet/landscape support,
-/// and perfectly proportioned horizontal scroll cards.
 class ShopHomePage extends ConsumerStatefulWidget {
   const ShopHomePage({super.key});
 
@@ -115,7 +110,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
     final shopState = ref.watch(shopControllerProvider);
     final shopNotifier = ref.read(shopControllerProvider.notifier);
 
-    // Listen to home tab re-tap scroll triggers to scroll back to the top
     ref.listen<int>(homeScrollTriggerProvider, (previous, next) {
       if (next > 0 && _scrollController.hasClients) {
         _scrollController.animateTo(
@@ -126,7 +120,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
       }
     });
 
-    // Categories slider list mapping to icons and names
     final categories = [
       {'name': 'All', 'icon': CupertinoIcons.square_grid_2x2},
       {'name': 'Phone', 'icon': CupertinoIcons.device_phone_portrait},
@@ -135,21 +128,18 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
       {'name': 'Accessory', 'icon': CupertinoIcons.headphones},
     ];
 
-    // Responsive screen width checks
     final screenWidth = MediaQuery.of(context).size.width;
     final crossAxisCount = screenWidth > 900 ? 4 : (screenWidth > 600 ? 3 : 2);
 
-    // Bottom padding matching TabBar overlays
     final bottomPadding =
         49.0 + MediaQuery.of(context).padding.bottom + AppSpacing.md;
 
     return AppScaffold(
-      safeAreaTop: true, // Pushes Column below notch / status bar safely
-      safeAreaBottom: false, // Let scroll body slide behind bottom tab bar
+      safeAreaTop: true,
+      safeAreaBottom: false,
       appBar: null,
       body: Column(
         children: [
-          // 1. Fixed Welcome Greeting Header
           Padding(
             padding: const EdgeInsets.fromLTRB(
               AppSpacing.md,
@@ -178,7 +168,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                 ),
                 Row(
                   children: [
-                    // Notification Bell Button with Red Dot Badge
                     _buildHeaderCircleButton(
                       context,
                       icon: CupertinoIcons.bell,
@@ -203,7 +192,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                       ),
                     ),
                     const SizedBox(width: AppSpacing.sm),
-                    // Cart Bag Button with Count Badge
+
                     _buildHeaderCircleButton(
                       context,
                       icon: CupertinoIcons.bag,
@@ -245,7 +234,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
             ),
           ),
 
-          // 3. Scrollable Main Content List
           Expanded(
             child: CustomScrollView(
               controller: _scrollController,
@@ -253,7 +241,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                 parent: BouncingScrollPhysics(),
               ),
               slivers: [
-                // 2. Floating Search & Filter Bar Header
                 SliverPersistentHeader(
                   floating: true,
                   delegate: _SearchHeaderDelegate(
@@ -268,17 +255,19 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                           Expanded(
                             child: AppSearchField(
                               hintText: 'Search product, category...',
-                              onChanged: (val) => shopNotifier.setSearchQuery(val),
+                              onChanged: (val) =>
+                                  shopNotifier.setSearchQuery(val),
                             ),
                           ),
                           const SizedBox(width: AppSpacing.sm),
-                          // Filter slider button
+
                           GestureDetector(
                             onTap: () {
                               AppDialog.showAlert(
                                 context: context,
                                 title: 'Filters',
-                                message: 'Advanced filters and sorting parameters.',
+                                message:
+                                    'Advanced filters and sorting parameters.',
                               );
                             },
                             child: Container(
@@ -301,7 +290,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                     ),
                   ),
                 ),
-                // 3a. Promo Hero Banner Card (iPhone 15 Pro)
+
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.all(AppSpacing.md),
@@ -327,7 +316,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    // Tag Chip
                                     Container(
                                       padding: const EdgeInsets.symmetric(
                                         horizontal: 10,
@@ -365,7 +353,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                         ),
                                       ],
                                     ),
-                                    // Shop Now Button using AppPrimaryButton
+
                                     AppPrimaryButton(
                                       text: 'Shop Now',
                                       fullWidth: false,
@@ -389,7 +377,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                 ),
                               ),
                             ),
-                            // Right side product image
+
                             Expanded(
                               flex: 4,
                               child: Padding(
@@ -411,7 +399,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                   ),
                 ),
 
-                // 3b. Horizontal Categories Icon Slider
                 SliverToBoxAdapter(
                   child: SizedBox(
                     height: 90.0,
@@ -476,7 +463,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                   ),
                 ),
 
-                // 3c. Flash Sale Section Header
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(
@@ -521,11 +507,9 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                   ),
                 ),
 
-                // 3d. Flash Sale Horizontal Products List (Proportionate Heights)
                 SliverToBoxAdapter(
                   child: SizedBox(
-                    height:
-                        192.0, // Fits card contents tightly with zero unused space
+                    height: 192.0,
                     child: shopState.products.when(
                       loading: () => ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -573,7 +557,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                               ),
                               child: Stack(
                                 children: [
-                                  // Main Card Content
                                   AppCard(
                                     onTap: () {
                                       context.goNamed(
@@ -586,7 +569,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        // Product image container using AppNetworkImage
                                         AppNetworkImage(
                                           imageUrl: product.imageUrl,
                                           height: 110.0,
@@ -596,7 +578,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                             topRight: Radius.circular(18.0),
                                           ),
                                         ),
-                                        // Details
+
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                             horizontal: AppSpacing.sm,
@@ -643,7 +625,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                       ],
                                     ),
                                   ),
-                                  // Floating countdown timer pill and discount pill in top areas
+
                                   const Positioned(
                                     left: 8,
                                     top: 8,
@@ -682,7 +664,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                   ),
                 ),
 
-                // 3e. Recommended For You Section Header
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(
@@ -726,7 +707,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                   ),
                 ),
 
-                // 3f. Recommended Grid Lists (Responsive Dynamic Column Layout)
                 shopState.products.when(
                   loading: () => SliverPadding(
                     padding: const EdgeInsets.symmetric(
@@ -787,7 +767,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
 
                           return Stack(
                             children: [
-                              // Base Card Content
                               AppCard(
                                 onTap: () {
                                   context.goNamed(
@@ -799,7 +778,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // Image container with AppNetworkImage (fixed height to avoid distortion)
                                     AppNetworkImage(
                                       imageUrl: product.imageUrl,
                                       height: 120.0,
@@ -809,7 +787,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                         topRight: Radius.circular(18.0),
                                       ),
                                     ),
-                                    // Text Detail Rows
+
                                     Expanded(
                                       child: Padding(
                                         padding: const EdgeInsets.all(
@@ -852,7 +830,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                                   color: colors.primary,
                                                   fontWeight: FontWeight.bold,
                                                 ),
-                                                // Small cart button
+
                                                 GestureDetector(
                                                   onTap: () {
                                                     AppBottomSheet.show(
@@ -923,7 +901,7 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                                   ],
                                 ),
                               ),
-                              // Floating top-right white heart button (Wishlist)
+
                               Positioned(
                                 right: AppSpacing.sm,
                                 top: AppSpacing.sm,
@@ -968,7 +946,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
                   },
                 ),
 
-                // Bottom padding spacer to clear the tab bar overlay safely
                 SliverToBoxAdapter(child: SizedBox(height: bottomPadding)),
               ],
             ),
@@ -978,7 +955,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
     );
   }
 
-  /// Private helper method to assemble a clean header round button
   Widget _buildHeaderCircleButton(
     BuildContext context, {
     required IconData icon,
@@ -1008,7 +984,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
     );
   }
 
-  /// Fallback dummy iPhone product for redirecting from promo card
   Product _mockIphoneFallback() {
     return const Product(
       id: '1',
@@ -1026,7 +1001,6 @@ class _ShopHomePageState extends ConsumerState<ShopHomePage> {
   }
 }
 
-/// Custom Sliver delegate for the floating search & filter header.
 class _SearchHeaderDelegate extends SliverPersistentHeaderDelegate {
   final Widget child;
   final double height;
@@ -1065,4 +1039,3 @@ class _SearchHeaderDelegate extends SliverPersistentHeaderDelegate {
         oldDelegate.backgroundColor != backgroundColor;
   }
 }
-

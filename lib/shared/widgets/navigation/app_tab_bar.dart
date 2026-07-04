@@ -4,7 +4,6 @@ import '../../../core/theme/app_colors.dart';
 import '../icons/app_icon.dart';
 import '../text/app_text.dart';
 
-/// Representation of a tab selection inside the [AppTabBar].
 class AppTabBarItem {
   final IconData icon;
   final IconData activeIcon;
@@ -17,9 +16,6 @@ class AppTabBarItem {
   });
 }
 
-/// A premium, translucent bottom navigation tab bar following Apple HIG.
-///
-/// Incorporates a frosted glass blur overlay backing.
 class AppTabBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
@@ -38,7 +34,7 @@ class AppTabBar extends StatelessWidget {
 
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0), // High iOS blur
+        filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
         child: Container(
           decoration: BoxDecoration(
             color: colors.translucentSurface,
@@ -52,7 +48,7 @@ class AppTabBar extends StatelessWidget {
           child: SafeArea(
             top: false,
             child: SizedBox(
-              height: 49.0, // Standard Apple TabBar height
+              height: 49.0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(items.length, (index) {

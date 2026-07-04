@@ -1,31 +1,22 @@
 import 'package:flutter/widgets.dart';
 
-/// Spacing system layout values for margins, padding, and gap sizes.
 class AppSpacing {
   AppSpacing._();
 
-  /// Extra small: 4px spacing. Used for micro alignments (e.g. icon to text).
   static const double xs = 4.0;
 
-  /// Small: 8px spacing. Used for tight groups of related controls.
   static const double sm = 8.0;
 
-  /// Medium-small: 12px spacing. Used for standard child elements inside cards.
   static const double mdSm = 12.0;
 
-  /// Medium: 16px spacing. Standard padding, margins, and gaps.
   static const double md = 16.0;
 
-  /// Large: 24px spacing. Separating sections, title spacing, page margins.
   static const double lg = 24.0;
 
-  /// Extra large: 32px spacing. Deep spacing between layout groups.
   static const double xl = 32.0;
 
-  /// Double extra large: 48px spacing. Massive gaps.
   static const double xxl = 48.0;
 
-  // --- WIDGET HELPER EDGEINSETS ---
   static const EdgeInsets edgeInsetsXs = EdgeInsets.all(xs);
   static const EdgeInsets edgeInsetsSm = EdgeInsets.all(sm);
   static const EdgeInsets edgeInsetsMdSm = EdgeInsets.all(mdSm);
@@ -33,7 +24,6 @@ class AppSpacing {
   static const EdgeInsets edgeInsetsLg = EdgeInsets.all(lg);
   static const EdgeInsets edgeInsetsXl = EdgeInsets.all(xl);
 
-  // Horizontal Padding
   static const EdgeInsets edgeInsetsHorizontalXs = EdgeInsets.symmetric(
     horizontal: xs,
   );
@@ -53,7 +43,6 @@ class AppSpacing {
     horizontal: xl,
   );
 
-  // Vertical Padding
   static const EdgeInsets edgeInsetsVerticalXs = EdgeInsets.symmetric(
     vertical: xs,
   );
@@ -73,7 +62,6 @@ class AppSpacing {
     vertical: xl,
   );
 
-  // Symmetric Padding
   static const EdgeInsets edgeInsetsSymmetricSm = EdgeInsets.symmetric(
     horizontal: sm,
     vertical: xs,
@@ -87,7 +75,6 @@ class AppSpacing {
     vertical: md,
   );
 
-  // --- HEIGHT & WIDTH BOXES (for gap spacing) ---
   static const SizedBox gapXs = SizedBox(width: xs, height: xs);
   static const SizedBox gapSm = SizedBox(width: sm, height: sm);
   static const SizedBox gapMdSm = SizedBox(width: mdSm, height: mdSm);

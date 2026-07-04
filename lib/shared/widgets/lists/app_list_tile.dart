@@ -4,7 +4,6 @@ import '../../../core/theme/app_spacing.dart';
 import '../icons/app_icon.dart';
 import '../text/app_text.dart';
 
-/// An iOS-styled list tile row container.
 class AppListTile extends StatefulWidget {
   final Widget? leading;
   final String title;
@@ -22,7 +21,7 @@ class AppListTile extends StatefulWidget {
     this.trailing,
     this.showDivider = true,
     this.onTap,
-    this.minHeight = 56.0, // HIG touch target and text height
+    this.minHeight = 56.0,
   });
 
   @override
@@ -40,7 +39,7 @@ class _AppListTileState extends State<AppListTile> {
       constraints: BoxConstraints(minHeight: widget.minHeight),
       color: _isPressed
           ? colors.border.withValues(alpha: 0.4)
-          : const Color(0x00000000), // Transparent
+          : const Color(0x00000000),
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.md,
         vertical: AppSpacing.sm,

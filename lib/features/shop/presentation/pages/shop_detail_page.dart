@@ -12,7 +12,6 @@ import '../../../../shared/widgets/sheets/app_bottom_sheet.dart';
 import '../../../../shared/widgets/text/app_text.dart';
 import '../controllers/product_controller.dart';
 
-/// Premium iOS HIG Product Detail page example.
 class ShopDetailPage extends StatelessWidget {
   final Product product;
 
@@ -22,9 +21,8 @@ class ShopDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = AppColors.of(context);
 
-    // Height of iOS Navigation Bar + Status Bar
     final topPadding = MediaQuery.of(context).padding.top + 44.0;
-    // Bottom padding for iOS home indicator area + floating action panel height
+
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return AppScaffold(
@@ -37,31 +35,25 @@ class ShopDetailPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Scrollable Detailed Content
           Positioned.fill(
             child: ListView(
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.only(
                 top: topPadding,
-                bottom:
-                    120.0 +
-                    bottomPadding, // push up to avoid floating bottom panel
+                bottom: 120.0 + bottomPadding,
               ),
               children: [
-                // Product Hero Image using shared AppNetworkImage component
                 AppNetworkImage(
                   imageUrl: product.imageUrl,
                   height: 320,
                   width: double.infinity,
                 ),
 
-                // Specs & Texts
                 Padding(
                   padding: const EdgeInsets.all(AppSpacing.lg),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Category Tag
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: AppSpacing.sm,
@@ -79,7 +71,6 @@ class ShopDetailPage extends StatelessWidget {
                       ),
                       AppSpacing.gapMd,
 
-                      // Title
                       AppText.title1(
                         product.name,
                         color: colors.textPrimary,
@@ -87,7 +78,6 @@ class ShopDetailPage extends StatelessWidget {
                       ),
                       AppSpacing.gapSm,
 
-                      // Price Tag
                       AppText.title2(
                         '\$${product.price.toStringAsFixed(0)}',
                         color: colors.primary,
@@ -95,14 +85,12 @@ class ShopDetailPage extends StatelessWidget {
                       ),
                       AppSpacing.gapLg,
 
-                      // Divider Line
                       Container(
                         height: 0.5,
                         color: colors.border.withValues(alpha: 0.5),
                       ),
                       AppSpacing.gapLg,
 
-                      // Header Overview
                       AppText.headline(
                         'Overview',
                         color: colors.textPrimary,
@@ -110,7 +98,6 @@ class ShopDetailPage extends StatelessWidget {
                       ),
                       AppSpacing.gapSm,
 
-                      // Description
                       AppText.body(
                         product.description,
                         color: colors.textSecondary,
@@ -118,7 +105,6 @@ class ShopDetailPage extends StatelessWidget {
                       ),
                       AppSpacing.gapLg,
 
-                      // Extra Cupertino Features list for illustration
                       _buildSpecRow(context, 'Condition', 'New in Box'),
                       _buildSpecRow(
                         context,
@@ -137,7 +123,6 @@ class ShopDetailPage extends StatelessWidget {
             ),
           ),
 
-          // Pinned iOS Translucent Bottom Purchase Action Panel
           Positioned(
             left: 0,
             right: 0,
@@ -163,7 +148,6 @@ class ShopDetailPage extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      // Total pricing
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,7 +168,6 @@ class ShopDetailPage extends StatelessWidget {
                         ),
                       ),
 
-                      // Add to Bag Button
                       Expanded(
                         flex: 2,
                         child: AppPrimaryButton(
@@ -214,7 +197,8 @@ class ShopDetailPage extends StatelessWidget {
                                     AppSpacing.gapLg,
                                     AppPrimaryButton(
                                       text: 'OK',
-                                      onPressed: () => Navigator.pop(sheetContext),
+                                      onPressed: () =>
+                                          Navigator.pop(sheetContext),
                                     ),
                                   ],
                                 ),

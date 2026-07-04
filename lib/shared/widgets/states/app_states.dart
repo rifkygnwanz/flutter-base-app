@@ -5,7 +5,6 @@ import '../buttons/app_buttons.dart';
 import '../icons/app_icon.dart';
 import '../text/app_text.dart';
 
-/// Centered iOS spinner loader widget with optional descriptive text.
 class AppLoading extends StatelessWidget {
   final String? message;
   final Color? color;
@@ -37,7 +36,6 @@ class AppLoading extends StatelessWidget {
   }
 }
 
-/// An HIG compliant empty state container with icon/illustration, title, subtitle, and action button.
 class AppEmptyState extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -94,7 +92,6 @@ class AppEmptyState extends StatelessWidget {
   }
 }
 
-/// An error page state container that formats system exceptions and supplies retry actions.
 class AppErrorState extends StatelessWidget {
   final String title;
   final String message;

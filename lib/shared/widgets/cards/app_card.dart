@@ -4,10 +4,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_shadows.dart';
 import '../../../core/theme/app_spacing.dart';
 
-/// A premium, customizable card container following iOS HIG elevation styles.
-///
-/// Material ink ripples are completely removed. If [onTap] is provided, the card
-/// responds with an HIG-compliant scale down and opacity bounce animation.
 class AppCard extends StatefulWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
@@ -23,9 +19,7 @@ class AppCard extends StatefulWidget {
     super.key,
     required this.child,
     this.padding = AppSpacing.edgeInsetsMd,
-    this.borderRadius = const BorderRadius.all(
-      Radius.circular(18.0),
-    ), // iOS 18px radius
+    this.borderRadius = const BorderRadius.all(Radius.circular(18.0)),
     this.color,
     this.hasShadow = true,
     this.border,

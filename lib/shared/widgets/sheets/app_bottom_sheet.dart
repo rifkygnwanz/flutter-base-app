@@ -4,9 +4,6 @@ import '../../../core/theme/app_radius.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 
-/// Central bottom sheet wrapper styled according to Apple HIG.
-///
-/// Completely eliminates Material dependencies by utilizing showCupertinoModalPopup.
 class AppBottomSheet extends StatelessWidget {
   final Widget child;
   final bool showDragHandle;
@@ -19,7 +16,6 @@ class AppBottomSheet extends StatelessWidget {
     this.padding = const EdgeInsets.all(AppSpacing.md),
   });
 
-  /// Displays the custom bottom sheet modally using Cupertino modal popups.
   static Future<T?> show<T>({
     required BuildContext context,
     required WidgetBuilder builder,
@@ -44,39 +40,37 @@ class AppBottomSheet extends StatelessWidget {
           color: colors.surface,
           borderRadius: AppRadius.borderTopLg,
         ),
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding: MediaQuery.of(
-            context,
-          ).viewInsets, // Adjust for keyboard overlay
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (showDragHandle) ...[
-                AppSpacing.gapSm,
-                // iOS drag handle visual indicator
-                Container(
-                  width: 36.0,
-                  height: 5.0,
-                  decoration: BoxDecoration(
-                    color: colors.border,
-                    borderRadius: AppRadius.borderCircular,
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (showDragHandle) ...[
+                  AppSpacing.gapSm,
+
+                  Container(
+                    width: 36.0,
+                    height: 5.0,
+                    decoration: BoxDecoration(
+                      color: colors.border,
+                      borderRadius: AppRadius.borderCircular,
+                    ),
+                  ),
+                  AppSpacing.gapSm,
+                ],
+                Flexible(
+                  child: Padding(
+                    padding: padding ?? EdgeInsets.zero,
+                    child: child,
                   ),
                 ),
-                AppSpacing.gapSm,
               ],
-              Flexible(
-                child: Padding(
-                  padding: padding ?? EdgeInsets.zero,
-                  child: child,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

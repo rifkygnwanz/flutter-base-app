@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Typography configuration mapping directly to Apple Cupertino HIG text styles.
 class AppTypography {
   AppTypography._();
 
-  static const String? _fontFamily =
-      null; // Uses SF Pro on iOS/macOS, Roboto on Android
+  static const String? _fontFamily = null;
 
   static const TextStyle largeTitle = TextStyle(
     fontFamily: _fontFamily,
@@ -79,7 +77,6 @@ class AppTypography {
     height: 1.4,
   );
 
-  /// Helper method to retrieve semantic typography from the context.
   static AppThemeTypography of(BuildContext context) {
     final extension = Theme.of(context).extension<AppThemeTypography>();
     assert(extension != null, 'No AppThemeTypography found in context theme.');
@@ -87,7 +84,6 @@ class AppTypography {
   }
 }
 
-/// ThemeExtension for iOS typography.
 class AppThemeTypography extends ThemeExtension<AppThemeTypography> {
   final TextStyle largeTitle;
   final TextStyle title1;
@@ -111,7 +107,6 @@ class AppThemeTypography extends ThemeExtension<AppThemeTypography> {
     required this.caption,
   });
 
-  /// Factory helper that automatically binds the correct text colors based on the theme.
   factory AppThemeTypography.create({
     required Color textColor,
     required Color secondaryColor,

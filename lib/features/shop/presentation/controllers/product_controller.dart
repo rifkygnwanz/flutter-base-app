@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-/// A mock E-Commerce product model.
 class Product {
   final String id;
   final String name;
@@ -53,7 +52,6 @@ class Product {
   }
 }
 
-/// State representation for the Shop feature screen.
 class ShopState {
   final AsyncValue<List<Product>> products;
   final String searchQuery;
@@ -78,14 +76,11 @@ class ShopState {
   }
 }
 
-/// Notifier controlling mock asynchronous product loadings and queries.
 class ShopController extends Notifier<ShopState> {
-  // A local list to track state changes like wishlist toggling
   late List<Product> _products;
 
   @override
   ShopState build() {
-    // Initialize local list from the mock database
     _products = List.from(_mockDatabase);
     Future.microtask(() => fetchProducts());
     return const ShopState(products: AsyncValue.loading());
@@ -177,7 +172,6 @@ class ShopController extends Notifier<ShopState> {
     ),
   ];
 
-  /// Simulates async loading latency before serving local mock database.
   Future<void> fetchProducts() async {
     state = state.copyWith(products: const AsyncValue.loading());
     await Future.delayed(const Duration(milliseconds: 1000));
@@ -194,7 +188,6 @@ class ShopController extends Notifier<ShopState> {
     _updateFilteredList();
   }
 
-  /// Toggles the wishlist status of a product
   void toggleWishlist(String productId) {
     _products = _products.map((p) {
       if (p.id == productId) {
@@ -220,12 +213,10 @@ class ShopController extends Notifier<ShopState> {
   }
 }
 
-/// Global provider for ShopState.
 final shopControllerProvider = NotifierProvider<ShopController, ShopState>(() {
   return ShopController();
 });
 
-/// Global provider to trigger scroll-to-top on Home screen.
 final homeScrollTriggerProvider = NotifierProvider<HomeScrollTrigger, int>(() {
   return HomeScrollTrigger();
 });
@@ -238,5 +229,3 @@ class HomeScrollTrigger extends Notifier<int> {
     state++;
   }
 }
-
-

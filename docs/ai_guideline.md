@@ -20,6 +20,7 @@ As an AI Agent, you MUST adhere strictly to the following architectural, visual,
    - Use `AppShadows` for shadows.
 5. **Document Extensions**: If you create a new global reusable widget, you MUST update `docs/widget_catalog.md` and `docs/widget_usage.md` with descriptive parameters and code snippets.
 6. **NEVER USE MATERIAL OR RAW IMAGE WIDGETS DIRECTLY**: Do not directly instantiate raw Material widgets, Material icons, Android navigation bars, or raw image downloaders (like `CachedNetworkImage` or `Image.network`) inside feature screens.
+7. **Minimize Code Comments**: When generating or modifying code, keep it extremely clean. Do NOT add comments in the code unless they are absolutely critical to explain complex business logic.
 
 ### Core Substitution Examples:
 
@@ -80,6 +81,7 @@ AppNetworkImage(imageUrl: url)
 
 ---
 
-## 3. Formatting & Quality Checks
-- Make sure to format all generated files using `fvm flutter format <file_path>`.
+## 3. Formatting & Quality Checks & Commands
+- Make sure to format all generated files using `fvm dart format <file_path>`.
 - Run analyzer check `fvm flutter analyze` to ensure there are no compilation errors or linter warnings.
+- **Always Use FVM**: For all Flutter/Dart operations (such as `pub get`, `format`, `analyze`, `run`, etc.), you MUST prefix the commands with `fvm` (e.g. `fvm flutter pub get`, `fvm dart format .`). Do not run raw `flutter` or `dart` commands.

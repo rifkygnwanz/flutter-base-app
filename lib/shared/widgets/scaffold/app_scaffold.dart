@@ -4,10 +4,6 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
 import '../states/app_states.dart';
 
-/// Centralized base scaffold for all feature screens.
-///
-/// Replaces standard Material Scaffold with a custom Cupertino HIG stack layout
-/// to support frosted glass navigation bars and absolute control over rendering.
 class AppScaffold extends StatelessWidget {
   final Widget body;
   final PreferredSizeWidget? appBar;
@@ -15,20 +11,16 @@ class AppScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
   final Color? backgroundColor;
 
-  // Safe Area configuration
   final bool safeAreaTop;
   final bool safeAreaBottom;
   final bool safeAreaLeft;
   final bool safeAreaRight;
 
-  // Loading overlay configuration
   final bool isLoading;
   final String? loadingMessage;
 
-  // New configuration to allow body to flow behind the bottom navigation bar (iOS design)
   final bool extendBodyBehindBottomBar;
 
-  // New configuration to dismiss the keyboard when tapping outside of inputs
   final bool dismissKeyboardOnTap;
 
   const AppScaffold({
@@ -53,7 +45,6 @@ class AppScaffold extends StatelessWidget {
     final colors = AppColors.of(context);
     final typography = AppTypography.of(context);
 
-    // Build the body, accounting for safe areas
     Widget mainContent = SafeArea(
       top: safeAreaTop,
       bottom: safeAreaBottom,
@@ -62,14 +53,13 @@ class AppScaffold extends StatelessWidget {
       child: body,
     );
 
-    // Stack to support blocking loading overlay
     Widget stackedBody = Stack(
       children: [
         Positioned.fill(child: mainContent),
         if (isLoading)
           Positioned.fill(
             child: Container(
-              color: const Color(0x4D000000), // dims behind modal (alpha 0.3)
+              color: const Color(0x4D000000),
               child: AppLoading(
                 message: loadingMessage,
                 color: const Color(0xFFFFFFFF),
@@ -79,7 +69,6 @@ class AppScaffold extends StatelessWidget {
       ],
     );
 
-    // In iOS HIG, translucent app bars float over the content (allowing content to scroll underneath).
     Widget layedOutContent;
     if (appBar != null) {
       layedOutContent = Stack(
@@ -87,8 +76,6 @@ class AppScaffold extends StatelessWidget {
           Positioned.fill(
             child: Padding(
               padding: EdgeInsets.only(
-                // Push down by the app bar height if we are enforcing top safe area.
-                // Otherwise, let the body flow behind the translucent app bar (top: 0).
                 top: safeAreaTop ? appBar!.preferredSize.height : 0.0,
               ),
               child: stackedBody,
@@ -101,21 +88,15 @@ class AppScaffold extends StatelessWidget {
       layedOutContent = stackedBody;
     }
 
-    final bottomPadding = (bottomNavigationBar != null && !extendBodyBehindBottomBar)
-        ? (49.0 +
-              MediaQuery.of(
-                context,
-              ).padding.bottom) // TabBar height + iOS home indicator
+    final bottomPadding =
+        (bottomNavigationBar != null && !extendBodyBehindBottomBar)
+        ? (49.0 + MediaQuery.of(context).padding.bottom)
         : 0.0;
 
     final fabBottomPadding = bottomNavigationBar != null
-        ? (49.0 +
-              MediaQuery.of(
-                context,
-              ).padding.bottom) // TabBar height + iOS home indicator
+        ? (49.0 + MediaQuery.of(context).padding.bottom)
         : 0.0;
 
-    // Stack bottomNavigationBar and floatingActionButton
     Widget scaffoldContent = Stack(
       children: [
         Positioned.fill(
@@ -125,12 +106,7 @@ class AppScaffold extends StatelessWidget {
           ),
         ),
         if (bottomNavigationBar != null)
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: bottomNavigationBar!,
-          ),
+          Positioned(left: 0, right: 0, bottom: 0, child: bottomNavigationBar!),
         if (floatingActionButton != null)
           Positioned(
             right: AppSpacing.lg,
@@ -148,8 +124,6 @@ class AppScaffold extends StatelessWidget {
       );
     }
 
-    // Stack bottomNavigationBar and floatingActionButton wrapped in DefaultTextStyle
-    // to prevent default yellow double-underlines on text.
     return Container(
       color: backgroundColor ?? colors.background,
       child: Directionality(

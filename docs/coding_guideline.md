@@ -51,9 +51,10 @@ This guide establishes the coding standards, patterns, and principles for develo
 
 ---
 
-## 4. File Sizing & Clean-up
+## 4. File Sizing, Clean-up & CLI Commands
 
 - **File Size Cap**: Keep widget files under **300 lines of code**. If a screen gets larger, slice it into smaller private widgets (e.g. `_ProfileHeader.dart`) stored inside the feature's `presentation/widgets/` folder.
-- **Remove Dead Code**: Never commit commented-out code blocks or unused package imports.
-- **Format Code**: Always run `fvm flutter format lib/` before committing.
+- **Remove Dead Code & Keep Comments Clean**: Never commit commented-out code blocks or unused package imports. Keep the code clean by avoiding comments when generating or writing code, unless they are extremely important.
+- **Format Code**: Always format the code before committing using `fvm dart format lib/`.
 - **Linter Obedience**: Ensure zero warnings or info markers are highlighted by Dart analyzer.
+- **Always Use FVM**: Prefix all Flutter/Dart operations with `fvm` (e.g., `fvm flutter pub get`, `fvm flutter analyze`, `fvm dart format .`). Do not run raw `flutter` or `dart` commands.

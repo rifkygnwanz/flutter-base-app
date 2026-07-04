@@ -4,12 +4,10 @@ import '../core/storage/preferences.dart';
 import 'router/app_router.dart';
 import 'theme/app_theme.dart';
 
-/// Provider that manages and persists the active [ThemeMode] selection.
 final themeModeProvider = NotifierProvider<ThemeModeNotifier, ThemeMode>(() {
   return ThemeModeNotifier();
 });
 
-/// Notifier handling the application's active [ThemeMode].
 class ThemeModeNotifier extends Notifier<ThemeMode> {
   @override
   ThemeMode build() {
@@ -26,7 +24,6 @@ class ThemeModeNotifier extends Notifier<ThemeMode> {
     }
   }
 
-  /// Update the active theme and persist it in [PreferencesService].
   Future<void> setThemeMode(ThemeMode mode) async {
     state = mode;
     String modeString = 'system';
@@ -40,7 +37,6 @@ class ThemeModeNotifier extends Notifier<ThemeMode> {
   }
 }
 
-/// The root application widget.
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
@@ -53,12 +49,10 @@ class MainApp extends ConsumerWidget {
       title: 'Base App Starter Kit',
       debugShowCheckedModeBanner: false,
 
-      // Theme integration
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
 
-      // Routing configuration
       routerConfig: router,
     );
   }

@@ -1,69 +1,40 @@
 import 'package:flutter/material.dart';
 
-/// Semantic color palette inspired by Apple Human Interface Guidelines (HIG).
-///
-/// Use [AppColors.of(context)] to access active theme-specific colors.
 class AppColors {
   AppColors._();
 
-  // --- BRAND / BASE PALETTE ---
+  static const Color lightPrimary = Color(0xFF007AFF);
+  static const Color lightSecondary = Color(0xFF5856D6);
+  static const Color lightBackground = Color(0xFFF2F2F7);
+  static const Color lightSurface = Color(0xFFFFFFFF);
+  static const Color lightTranslucentSurface = Color(0xCCFFFFFF);
+  static const Color lightTextPrimary = Color(0xFF000000);
+  static const Color lightTextSecondary = Color(0x993C3C43);
+  static const Color lightTextTertiary = Color(0x4D3C3C43);
+  static const Color lightBorder = Color(0xFFC6C6C8);
+  static const Color lightError = Color(0xFFFF3B30);
+  static const Color lightSuccess = Color(0xFF34C759);
+  static const Color lightWarning = Color(0xFFFF9500);
 
-  // Light Mode Colors
-  static const Color lightPrimary = Color(0xFF007AFF); // iOS Blue
-  static const Color lightSecondary = Color(0xFF5856D6); // iOS Purple
-  static const Color lightBackground = Color(
-    0xFFF2F2F7,
-  ); // System Grouped Background
-  static const Color lightSurface = Color(
-    0xFFFFFFFF,
-  ); // Card/Surface Background
-  static const Color lightTranslucentSurface = Color(
-    0xCCFFFFFF,
-  ); // 80% Translucent White
-  static const Color lightTextPrimary = Color(0xFF000000); // Primary Label
-  static const Color lightTextSecondary = Color(
-    0x993C3C43,
-  ); // Secondary Label (60% Opacity)
-  static const Color lightTextTertiary = Color(
-    0x4D3C3C43,
-  ); // Tertiary Label (30% Opacity)
-  static const Color lightBorder = Color(0xFFC6C6C8); // Opaque Separator
-  static const Color lightError = Color(0xFFFF3B30); // iOS Red
-  static const Color lightSuccess = Color(0xFF34C759); // iOS Green
-  static const Color lightWarning = Color(0xFFFF9500); // iOS Orange
+  static const Color darkPrimary = Color(0xFF0A84FF);
+  static const Color darkSecondary = Color(0xFF5E5CE6);
+  static const Color darkBackground = Color(0xFF000000);
+  static const Color darkSurface = Color(0xFF1C1C1E);
+  static const Color darkTranslucentSurface = Color(0xCC1C1C1E);
+  static const Color darkTextPrimary = Color(0xFFFFFFFF);
+  static const Color darkTextSecondary = Color(0x99EBEBF5);
+  static const Color darkTextTertiary = Color(0x4DEBEBF5);
+  static const Color darkBorder = Color(0xFF38383A);
+  static const Color darkError = Color(0xFFFF453A);
+  static const Color darkSuccess = Color(0xFF30D158);
+  static const Color darkWarning = Color(0xFFFF9F0A);
 
-  // Dark Mode Colors
-  static const Color darkPrimary = Color(0xFF0A84FF); // iOS Dark Blue
-  static const Color darkSecondary = Color(0xFF5E5CE6); // iOS Dark Purple
-  static const Color darkBackground = Color(
-    0xFF000000,
-  ); // Dark System Background
-  static const Color darkSurface = Color(
-    0xFF1C1C1E,
-  ); // Dark Card/Surface Background
-  static const Color darkTranslucentSurface = Color(
-    0xCC1C1C1E,
-  ); // 80% Translucent Dark Grey
-  static const Color darkTextPrimary = Color(0xFFFFFFFF); // Dark Primary Label
-  static const Color darkTextSecondary = Color(
-    0x99EBEBF5,
-  ); // Dark Secondary Label (60% Opacity)
-  static const Color darkTextTertiary = Color(
-    0x4DEBEBF5,
-  ); // Dark Tertiary Label (30% Opacity)
-  static const Color darkBorder = Color(0xFF38383A); // Dark Opaque Separator
-  static const Color darkError = Color(0xFFFF453A); // iOS Dark Red
-  static const Color darkSuccess = Color(0xFF30D158); // iOS Dark Green
-  static const Color darkWarning = Color(0xFFFF9F0A); // iOS Dark Orange
-
-  // Static constants for general use
   static const Color primary = lightPrimary;
   static const Color secondary = lightSecondary;
   static const Color error = lightError;
   static const Color success = lightSuccess;
   static const Color warning = lightWarning;
 
-  /// Helper method to retrieve semantic theme colors from the build context.
   static AppThemeColors of(BuildContext context) {
     final extension = Theme.of(context).extension<AppThemeColors>();
     assert(extension != null, 'No AppThemeColors found in context theme.');
@@ -71,7 +42,6 @@ class AppColors {
   }
 }
 
-/// ThemeExtension for semantic colors to support clean Dark & Light mode switches.
 class AppThemeColors extends ThemeExtension<AppThemeColors> {
   final Color primary;
   final Color secondary;

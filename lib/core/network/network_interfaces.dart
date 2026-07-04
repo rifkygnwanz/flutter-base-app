@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'api_exception.dart';
 
-/// Base Remote Data Source class providing a utility to execute safe network calls.
 abstract class RemoteDataSource {
-  /// Execute a network call, automatically catching [DioException] and wrapping them in [ApiException].
   Future<T> safeCall<T>({
     required Future<Response<dynamic>> Function() call,
     required T Function(dynamic data) parser,
@@ -21,7 +19,6 @@ abstract class RemoteDataSource {
     }
   }
 
-  /// Execute a network call returning list data.
   Future<List<T>> safeCallList<T>({
     required Future<Response<dynamic>> Function() call,
     required T Function(dynamic item) itemParser,
@@ -48,5 +45,4 @@ abstract class RemoteDataSource {
   }
 }
 
-/// Marker base interface class for repositories.
 abstract class Repository {}
